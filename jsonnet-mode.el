@@ -1,4 +1,4 @@
-;;; jsonnet-mode.el --- Major mode for editing jsonnet files
+;;; jsonnet-mode.el --- Major mode for editing jsonnet files -*- lexical-binding: t
 
 ;; Copyright (C) 2017 Nick Lanham
 
@@ -314,8 +314,8 @@ If not inside of a multiline string, return nil."
         (search-dirs jsonnet-library-search-directories)
         (output-buffer-name "*jsonnet output*"))
     (save-some-buffers (not compilation-ask-about-save)
-                       (lexical-let ((directories (cons (file-name-directory file-to-eval)
-                                                        search-dirs)))
+                       (let ((directories (cons (file-name-directory file-to-eval)
+                                                search-dirs)))
                          (lambda ()
                            (member (file-name-directory (file-truename (buffer-file-name)))
                                    directories))))
